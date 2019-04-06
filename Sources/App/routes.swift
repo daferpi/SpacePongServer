@@ -4,12 +4,26 @@ import Vapor
 public func routes(_ router: Router) throws {
     // Basic "It works" example
     router.get { req in
-        return "It works!"
+        return "hello world"
     }
     
     // Basic "Hello, world!" example
     router.get("hello") { req in
         return "Hello, world!"
+    }
+    
+    // Basic "Hello, world!" example
+    router.get("mellamoManolo") { req in
+        return "me llamo Manolo"
+    }
+    
+    router.get("users", Int.parameter) { req -> String in
+        let id = try req.parameters.next(Int.self)
+        
+        if id == 3 {
+            return "buenos dias"
+        }
+        return "requested id #\(id)"
     }
 
     // Example of configuring a controller
